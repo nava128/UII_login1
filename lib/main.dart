@@ -1,41 +1,49 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'package:navalogin1/layers/layer_one.dart';
+import 'package:navalogin1/layers/layer_two.dart';
+import 'package:navalogin1/layers/layer_three.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+void main() {
+  runApp(MaterialApp(
+    title: 'Login Demo',
+    theme: ThemeData(
+      fontFamily: 'Poppins',
+    ),
+    debugShowCheckedModeBanner: false,
+    home: const LoginPage(),
+  ));
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage('images/primaryBg.png'),
+          fit: BoxFit.cover,
+        )),
+        child: const Stack(
+          children: <Widget>[
+            Positioned(
+                top: 100,
+                left: 59,
+                child: Text(
+                  'Login',
+                  style: TextStyle(
+                      fontSize: 48,
+                      fontFamily: 'Poppins-Medium',
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                )),
+            Positioned(top: 200, right: 0, bottom: 0, child: LayerOne()),
+            Positioned(top: 250, right: 0, bottom: 28, child: LayerTwo()),
+            Positioned(top: 300, right: 0, bottom: 48, child: LayerThree()),
+          ],
         ),
       ),
     );
